@@ -18,13 +18,13 @@ pool.getConnection((err, connection) => {
 
         let lastInsertedId = null;
         //insert an item and fetch that item info too
-        pool.query("Insert into products(name, price) values ('mike', 10)", (err, rsh) => {
+        pool.execute("Insert into products(name, price) values ('mike', 10)", (err, rsh) => {
             if (err) {
                 console.log(err.message);
             } else {
                 console.log(lastInsertedId);
                 lastInsertedId =rsh.insertId;
-                    pool.query('select * from products where id = ?', [lastInsertedId],
+                    pool.execute('select * from products where id = ?', [lastInsertedId],
                     (err, data) => {
                         if (err) {
                             console.log(err);
@@ -39,7 +39,7 @@ pool.getConnection((err, connection) => {
 
         console.log(lastInsertedId);
         //update a record
-        pool.query("update products set price= ? where id=?",[300, lastInsertedId],(err, rsh) => {
+        pool.execute("update products set price= ? where id=?",[300, lastInsertedId],(err, rsh) => {
             if (err) {
                 console.log(err);
             }
@@ -49,13 +49,13 @@ pool.getConnection((err, connection) => {
         })
 
         //delete a recrod
-        pool.query("Delete from products where id=?",[lastInsertedId], (err, rsh) => {
+        pool.execute("Delete from products where id=?",[lastInsertedId], (err, rsh) => {
             if (err) {
                 console.log(err);
             }
             else {
                 //select all
-                pool.query('select * from products',
+                pool.execute('select * from products',
                     (err, data) => {
                         if (err) {
                             console.log(err);
