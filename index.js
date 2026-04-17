@@ -1,15 +1,9 @@
 const express = require('express');
+const router = require('./routes/products')
 const app = express();
-const mysql = require('mysql2');
 
-const pool = mysql.createPool({
-    host:               'localhost',
-    user:               'root',
-    password:           '12345678',
-    database:           'nodemysql',
-    port:               3306,
-    multipleStatements: true
-})
+app.use('/', router);
+
 
 // pool.getConnection((err, connection) => {
 //     if (err) {
@@ -71,60 +65,6 @@ const pool = mysql.createPool({
 //     }
 // })
 
-
-app.get('/getData', (req, res) => {
-    pool.execute('select * from products', (err, data) => {
-            if (err) {
-               res.status(500).send(err)
-            } else {
-                res.status(200).send(data);
-            }
-        })
-})
-
-app.post('/postData', (req, res) => {
-    pool.getConnection((err, connection) => {
-        if (err) {
-            res.send(err.message).status(500)
-        } else {
-            pool.execute("Insert into products(name, price) values ('mike', 10)", (err, data) => {
-                if (err) {
-                    res.status(500).send(err)
-                } else {
-                    res.status(201).send(data)
-                }
-            })
-        }
-    })
-})
-
-app.delete('/delete', (req, res) => {
-    pool.execute("Delete from products where id=5", (err, data) => {
-        if (err) {
-            res.status(500).send(err)
-        } else {
-            res.status(200).send(data);
-        }
-    })
-})
-
-app.put('/update', (req, res) => {
-
-    pool.getConnection((err, connection) => {
-        if (err) {
-            res.send(err.message).status(500)
-        } else {
-            pool.execute("update products set price= ? where id=?",[300, 4], (err, data) => {
-                if (err) {
-                    res.status(500).send(err)
-                } else {
-                    res.status(200).send(data);
-                }
-            })
-        }
-    })
-
-})
 
 app.listen(3000, () => {
     console.log(`Server is running...`)
