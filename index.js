@@ -12,10 +12,30 @@ const pool = mysql.createPool({
 })
 
 pool.getConnection((err, connection) => {
-    if(err) {        console.log(err.sqlMessage);
-
+    if (err) {
         console.log(err.sqlMessage || err.message);
     } else {
+
+        //select all
+        pool.query('select * from products',
+            (err, data) => {
+                if (err) console.log(err);
+                else console.log(data);
+            })
+
+        //insert an item and fetch that item info too
+        pool.query("Insert into products(name, price) values ('mike', 10)", (err, rsh) => {
+            if (err) {
+                console.log(err.message);
+            } else {
+                pool.query('select * from products where id = ?', [rsh.insertId],
+                    (err, data) => {
+                        if (err) console.log(err);
+                        else console.log(data);
+                    })
+            }
+        })
+
         console.log("Connection established");
     }
 })
