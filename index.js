@@ -56,7 +56,7 @@ const pool = mysql.createPool({
 //             else {
 //                 //select all
 //                 pool.execute('select * from products',
-//                     (err, data) => {
+//                     (err, data) => {Delete from products where id=?",[lastInsertedId]
 //                         if (err) {
 //                             console.log(err);
 //                         }
@@ -80,6 +80,50 @@ app.get('/getData', (req, res) => {
                 res.status(200).send(data);
             }
         })
+})
+
+app.post('/postData', (req, res) => {
+    pool.getConnection((err, connection) => {
+        if (err) {
+            res.send(err.message).status(500)
+        } else {
+            pool.execute("Insert into products(name, price) values ('mike', 10)", (err, data) => {
+                if (err) {
+                    res.status(500).send(err)
+                } else {
+                    res.status(201).send(data)
+                }
+            })
+        }
+    })
+})
+
+app.delete('/delete', (req, res) => {
+    pool.execute("Delete from products where id=5", (err, data) => {
+        if (err) {
+            res.status(500).send(err)
+        } else {
+            res.status(200).send(data);
+        }
+    })
+})
+
+app.put('/update', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if (err) {
+            res.send(err.message).status(500)
+        } else {
+            pool.execute("update products set price= ? where id=?",[300, 4], (err, data) => {
+                if (err) {
+                    res.status(500).send(err)
+                } else {
+                    res.status(200).send(data);
+                }
+            })
+        }
+    })
+
 })
 
 app.listen(3000, () => {
