@@ -1,0 +1,36 @@
+<div class="card">
+    <img src="<%= product.image %>" alt="<%= product.name %>">
+    <div class="card-body">
+
+        <% if (product.badge) { %>
+            <span class="badge badge-<%= product.badge.toLowerCase() %>">
+        <%= product.badge %>
+      </span>
+        <% } %>
+
+        <h3><%= product.name %></h3>
+
+        <div class="rating">
+            <% for(let i = 1; i <= 5; i++) { %>
+                <span><%= i <= product.rating ? '★' : '☆' %></span>
+            <% } %>
+            <small>(<%= product.reviews %>)</small>
+        </div>
+
+        <p class="description"><%= product.description %></p>
+
+        <div class="card-footer">
+            <div class="price-block">
+                <span class="price">$<%= product.price %></span>
+                <% if (product.oldPrice) { %>
+                    <span class="old-price">$<%= product.oldPrice %></span>
+                <% } %>
+            </div>
+            <div class="card-actions">
+                <button class="btn-cart">Add</button>
+                <button class="btn-wish">♡</button>
+            </div>
+        </div>
+
+    </div>
+</div>
