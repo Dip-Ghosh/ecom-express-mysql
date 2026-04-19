@@ -1,9 +1,19 @@
 const Products = require('../models/product');
+const {products} = require("../routes/newProduct");
 
 const getProducts = async (req, res) => {
     try {
-        const [rows] = await Products.fetchData();
-        res.json(rows);
+        const result = await Products.fetchData();
+        const rows = result[0] || result || [];
+
+        res.render(
+            'products',
+            {
+                products:  rows,
+                selectedPage:'store',
+                isProduct:rows.length>0
+            }
+        );
     } catch (err) {
         res.status(500).send(err.message);
     }

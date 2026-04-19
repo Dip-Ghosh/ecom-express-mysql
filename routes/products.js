@@ -3,20 +3,6 @@ const {getProducts, saveProduct, deleteProduct, updateProduct} = require('../con
 
 const router = express.Router();
 
-// const checkContentType = (req, res, next) => {
-//     if (req.headers['content-type'] !== 'application/json') {
-//         res.send("invalid request!");
-//     }
-//     next();
-// }
-//
-// const bodyParser = () => {
-//
-// }
-
-// router.use(checkContentType);
-
-//product
 router.get('/products', getProducts);
 router.post('/products', saveProduct);
 router.delete('/products/:id', deleteProduct);
