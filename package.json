@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/Dip-Ghosh/mysql-learning#readme",
   "dependencies": {
+    "ejs": "^5.0.2",
     "express": "^5.2.1",
     "nodemon": "^3.1.14"
   },
