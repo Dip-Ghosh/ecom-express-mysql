@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 
-const pool = mysql.createPool({
+const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: '12345678',
@@ -9,4 +9,4 @@ const pool = mysql.createPool({
   multipleStatements: true,
 });
 
-module.exports = pool.promise();
+module.exports = db.promise();
