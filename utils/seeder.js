@@ -1,6 +1,6 @@
 const db = require('./database');
-const TOTAL = 1000_000;
-const BATCH_SIZE = 1_000;
+const TOTAL = 20;
+const BATCH_SIZE = 1000;
 
 const badges = ['Sale', 'Hot', 'New', 'Featured', null];
 const adjectives = ['Wireless', 'Mechanical', 'Smart', 'Portable', 'Premium', 'Ultra', 'Pro'];
@@ -22,7 +22,7 @@ const generateProduct = (i) => {
     randomInt(1, 5),
     randomInt(0, 5000),
     `High quality ${random(adjectives).toLowerCase()} ${random(items).toLowerCase()} with excellent features.`,
-    `https://placehold.co/400x320/E6F1FB/185FA5?text=Product+${i}`,
+    `https://picsum.photos/seed/${i}/400/320`,
   ];
 };
 

@@ -20,8 +20,7 @@
         <p>Fill in the details below to update a new product.</p>
     </div>
 
-    <form action="/products/add" method="POST" class="product-form">
-        <input type="hidden" name="id" value="<%= product.id %>">
+    <form action="/products/<%= product.id %>" method="POST" class="product-form">
         <div class="form-group">
             <label for="name">Product Name</label>
             <input type="text" id="name" value="<%= product.name %>" name="name" placeholder="e.g. Wireless Headphones" required>
@@ -42,7 +41,8 @@
             <div class="form-group">
                 <label for="badge">Badge</label>
                 <select id="badge" name="badge">
-                    <option value="" <%= !product.badge ? 'selected' : '' %>>None</option>
+                    <%= console.log(product.badge) %>
+                    <option value="" <%= product.badge === "" ? 'selected' : '' %>>None</option>
                     <option value="New" <%= product.badge === 'New' ? 'selected' : '' %>>New</option>
                     <option value="Sale" <%= product.badge === 'Sale' ? 'selected' : '' %>>Sale</option>
                     <option value="Hot" <%= product.badge === 'Hot' ? 'selected' : '' %>>Hot</option>
@@ -69,13 +69,13 @@
             <label for="description">Description</label>
             <textarea id="description"  name="description" rows="3"
                       placeholder="e.g. Premium noise-cancelling sound for all-day comfort." required>
-                <%= product.description %>
+                <%= product.description %>class
             </textarea>
         </div>
 
         <div class="form-group">
             <label for="image">Image URL</label>
-            <input type="text" id="image" name="image" value="<%= product.image.trim().replace(/\s+/g, ' ') %>"
+            <input type="text" id="image" name="image" value="<%=  (product.image || '').trim().replace(/\s+/g, ' ') %>"
                    placeholder="https://placehold.co/400x320/E6F1FB/185FA5?text=Product">
         </div>
 
