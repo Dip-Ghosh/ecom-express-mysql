@@ -1,13 +1,77 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
-    <div class="container-fluid">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link text-dark fs-4 px-3 selected" href="/"> Home </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark fs-4 px-3" href="/products"> Add Product </a>
-                </li>
-            </ul>
+<nav class="dark-nav">
 
+    <!-- Top announcement bar -->
+    <div class="dark-nav__top">
+        <span>Free shipping on orders over $50</span>
+        <div class="dark-nav__top-links">
+            <a href="#">Track order</a>
+            <a href="#">Help</a>
+            <a href="#">EN</a>
+        </div>
     </div>
+
+    <!-- Main row -->
+    <div class="dark-nav__main">
+        <a href="/" class="dark-nav__brand">Shop<span>.</span></a>
+
+        <!-- Search -->
+        <div class="dark-nav__search">
+            <select name="category">
+                <option>All</option>
+                <option>Electronics</option>
+                <option>Clothing</option>
+                <option>Books</option>
+                <option>Sports</option>
+            </select>
+            <input type="text" placeholder="Search products, brands...">
+            <button type="button" class="dark-nav__search-btn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="6.5" cy="6.5" r="4" stroke="#fff" stroke-width="1.5"/>
+                    <path d="M10 10l3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Icons -->
+        <div class="dark-nav__icons">
+            <a href="/wishlist" class="dark-nav__icon-btn">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 15s-6-4.35-6-8.5A4 4 0 0 1 9 4.28 4 4 0 0 1 15 6.5C15 10.65 9 15 9 15z"
+                          stroke="rgba(255,255,255,0.8)" stroke-width="1.3" fill="none"/>
+                </svg>
+                <span>Wishlist</span>
+            </a>
+            <a href="/cart" class="dark-nav__icon-btn dark-nav__cart">
+                <span class="dark-nav__cart-badge">3</span>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M2.5 2.5h2l2 8h7l1.5-5.5H6"
+                          stroke="rgba(255,255,255,0.8)" stroke-width="1.3"
+                          stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <circle cx="7.5" cy="13.5" r="1.2" stroke="rgba(255,255,255,0.8)" stroke-width="1.2" fill="none"/>
+                    <circle cx="12" cy="13.5" r="1.2" stroke="rgba(255,255,255,0.8)" stroke-width="1.2" fill="none"/>
+                </svg>
+                <span>Cart</span>
+            </a>
+            <a href="/account" class="dark-nav__icon-btn">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="9" cy="6" r="3" stroke="rgba(255,255,255,0.8)" stroke-width="1.3" fill="none"/>
+                    <path d="M2 16c0-3.3 3.1-6 7-6s7 2.7 7 6"
+                          stroke="rgba(255,255,255,0.8)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+                </svg>
+                <span>Account</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Category bar -->
+    <div class="dark-nav__categories">
+        <a href="/" class="dark-nav__cat <%= activePage === 'home' ? 'active' : '' %>">Home</a>
+        <a href="/electronics" class="dark-nav__cat <%= activePage === 'electronics' ? 'active' : '' %>">Electronics</a>
+        <a href="/clothing" class="dark-nav__cat <%= activePage === 'clothing' ? 'active' : '' %>">Clothing</a>
+        <a href="/books" class="dark-nav__cat <%= activePage === 'books' ? 'active' : '' %>">Books</a>
+        <a href="/sports" class="dark-nav__cat <%= activePage === 'sports' ? 'active' : '' %>">Sports</a>
+        <a href="/beauty" class="dark-nav__cat <%= activePage === 'beauty' ? 'active' : '' %>">Beauty</a>
+        <a href="/deals" class="dark-nav__deal">Today's Deals</a>
+    </div>
+
 </nav>
