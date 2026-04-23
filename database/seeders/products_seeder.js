@@ -1,4 +1,5 @@
-const db = require('./database');
+const db = require('../../utils/database');
+
 const TOTAL = 20;
 const BATCH_SIZE = 1000;
 
@@ -26,7 +27,7 @@ const generateProduct = (i) => {
   ];
 };
 
-const seed = async () => {
+const products_seeder = async () => {
   try {
     console.log(`🌱 Seeding ${TOTAL.toLocaleString()} products in batches of ${BATCH_SIZE}...\n`);
 
@@ -67,4 +68,4 @@ const seed = async () => {
   }
 };
 
-seed();
+module.exports = products_seeder;
